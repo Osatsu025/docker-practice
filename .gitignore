@@ -1,0 +1,48 @@
+# General
+## IDE files and OS-specific files
+.vscode/
+.idea/
+.DS_Store
+
+## Misc
+*.pem
+
+# Laravel Project (in docker-practice/)
+/docker-practice/vendor/
+/docker-practice/node_modules/
+/docker-practice/public/build/
+/docker-practice/public/hot
+/docker-practice/storage/*.key
+/docker-practice/.env
+/docker-practice/.env.backup
+/docker-practice/.phpunit.result.cache
+/docker-practice/storage/framework/sessions/*
+/docker-practice/storage/framework/views/*
+/docker-practice/storage/framework/cache/data/*
+/docker-practice/storage/logs/*.log
+
+# Next.js Project (in next-practice/)
+## dependencies
+/next-practice/node_modules/
+/next-practice/.pnp
+/next-practice/.pnp.*
+
+## testing
+/next-practice/coverage/
+
+## next.js
+/next-practice/.next/
+/next-practice/out/
+
+## production
+/next-practice/build/
+
+## vercel
+/next-practice/.vercel/
+
+## env files
+/next-practice/.env*.local
+
+## typescript
+/next-practice/*.tsbuildinfo
+/next-practice/next-env.d.ts
