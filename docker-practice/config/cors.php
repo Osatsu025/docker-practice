@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 return [
 
     /*
@@ -19,7 +21,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => Str::of(env('CORS_ALLOWED_ORIGINS', ''))->split('/,s*/')->filter()->all(),
 
     'allowed_origins_patterns' => [],
 
