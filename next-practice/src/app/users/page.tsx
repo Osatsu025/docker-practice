@@ -1,6 +1,12 @@
 // next-practice/src/app/api/users/page.tsx
+import Link from "next/link";
 import { UserForm } from "@/components/UserForm";
+import { createUser, FormState } from "@/actions/createUser";
 
+const initialState: FormState = {
+  message: "",
+  error: false,
+};
 
 type User = {
   id: number;
@@ -34,11 +40,22 @@ export default async function UsersPage() {
 
   return (
     <main style={{ padding: '2rem' }}>
-      <UserForm />
+      <UserForm
+        formAction={createUser}
+        initialState={initialState}
+        title="新規ユーザ登録"
+        buttonText="登録"
+        pendingButtonText="登録中..."
+      />
       <h1>ユーザ一覧</h1>
       <ul style={{ marginTop: '1rem' }}>
         {users.map((user) => (
-          <li key={user.id}>{user.name}({user.email})</li>
+          <li key={user.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <span>{user.name}({user.email})</span>
+            <Link href={`/users/${user.id}/edit`} style={{ textDecoration: 'underline', color: 'blue' }}>
+              編集
+            </Link>
+          </li>
         ))}
       </ul>
     </main>

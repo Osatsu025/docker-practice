@@ -52,9 +52,17 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            // パスワードは入力された場合のみバリデーション・更新する
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ]);
+
+        // パスワードが入力されていない場合は、バリデーション済みデータから除外する
+        if (empty($validated['password'])) {
+            unset($validated['password']);
+        } else {
+            $validated['password'] = Hash::make($validated['password']);
+        }
 
         $user->update($validated);
 
