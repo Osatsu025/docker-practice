@@ -1,9 +1,10 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
+import { useActionState } from "react";
 import { FormState } from "@/actions/createUser"; // createUserとupdateUserで共通のFormStateを使う想定
 
-type User = {
+export type User = {
   id: number;
   name: string;
   email: string;
@@ -29,12 +30,12 @@ function SubmitButton({ text, pendingText }: { text: string, pendingText: string
 }
 
 export function UserForm({ formAction, initialState, user, buttonText, pendingButtonText, title }: UserFormProps) {
-  const [ state, dispatch ] = useFormState(formAction, initialState);
+  const [ state, dispatch ] = useActionState(formAction, initialState);
   const isCreate = !user;
 
   return (
     <form action={dispatch} style={{ marginBottom: '2rem', padding: '1rem', border: '1px solid #ccc', borderRadius: '8px'}}>
-      <h2>新規ユーザ登録</h2>
+      <h2>{title}</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         <div>
           <label htmlFor="name">名前</label>

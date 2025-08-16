@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { UserForm } from "@/components/UserForm";
 import { createUser, FormState } from "@/actions/createUser";
+import { deleteUser } from "@/actions/deleteUser";
+import { DeleteForm } from "@/components/DeleteForm";
 
 const initialState: FormState = {
   message: "",
@@ -55,6 +57,7 @@ export default async function UsersPage() {
             <Link href={`/users/${user.id}/edit`} style={{ textDecoration: 'underline', color: 'blue' }}>
               編集
             </Link>
+            <DeleteForm userId={user.id} />
           </li>
         ))}
       </ul>
